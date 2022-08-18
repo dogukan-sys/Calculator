@@ -17,19 +17,20 @@ function divide(a, b) {
 function operate(operator, a, b) { 
     switch (operator) {
         case "add":
-            add(a, b)
+            result = add(a, b)
             break;
         case "subtract":
-            subtract(a, b)
+            result = subtract(a, b)
             break;
         case "multiply":
-            multiply(a, b)
+            result = multiply(a, b)
             break;
         case "divide":
-            divide(a, b)
+            result = divide(a, b)
             break;
         default:
             console.log("Invalid operator")
-            break;
+            return
     }
+    return result;
 }
