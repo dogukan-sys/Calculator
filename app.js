@@ -34,3 +34,20 @@ function operate(operator, a, b) {
     }
     return result;
 }
+
+function updateScreen(x){
+    // prevent overflow of screen
+    if(screen.textContent.length == 23){
+        return
+    }
+    screen.textContent += x;
+}
+
+const screen = document.querySelector('#screen');
+const numbers = document.querySelectorAll('.number');
+
+numbers.forEach(n => {
+    n.addEventListener('click', () => {
+        updateScreen(n.textContent)
+    })
+});
