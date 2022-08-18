@@ -39,15 +39,24 @@ function updateScreen(x){
     // prevent overflow of screen
     if(screen.textContent.length == 23){
         return
-    }
+    } else if (x == 'clear'){
+        screen.textContent = ''
+    } else {
     screen.textContent += x;
+    }
 }
 
 const screen = document.querySelector('#screen');
 const numbers = document.querySelectorAll('.number');
+const clear = document.querySelector('#clear');
 
 numbers.forEach(n => {
     n.addEventListener('click', () => {
         updateScreen(n.textContent)
     })
 });
+
+clear.addEventListener('click', e => {
+    updateScreen(clear.id)
+})
+
