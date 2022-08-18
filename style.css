@@ -17,10 +17,9 @@ body{
 }
 
 #screen{
-    padding: 16px;
-    display: flex;
-    justify-content: end;
-    align-items: center;
+    padding: 8px;
+    text-align: end;
+    height: 2rem;
     border: 2px solid black;
     font-size: 24px;
     font-weight: 600;
