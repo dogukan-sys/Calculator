@@ -46,15 +46,32 @@ function updateScreen(x){
     }
 }
 
+var leftOperand = 0
+var rigthOperand = 0
+var operatorSelected = false 
+
 const screen = document.querySelector('#screen');
 const numbers = document.querySelectorAll('.number');
 const clear = document.querySelector('#clear');
+const operators = document.querySelectorAll('.operator');
 
 numbers.forEach(n => {
     n.addEventListener('click', () => {
         updateScreen(n.textContent)
     })
 });
+
+operators.forEach(n => {
+    n.addEventListener('click', () => {
+        if (operatorSelected) {
+            console.log('operator selected')
+            return
+        }
+        leftOperand = screen.textContent
+        operatorSelected = true 
+        updateScreen(n.textContent)
+    })
+})
 
 clear.addEventListener('click', e => {
     updateScreen(clear.id)
