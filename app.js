@@ -39,41 +39,65 @@ function updateScreen(x){
     // prevent overflow of screen
     if(screen.textContent.length == 23){
         return
-    } else if (x == 'clear'){
+    } else if(showingResult){
         screen.textContent = ''
-    } else {
-    screen.textContent += x;
+        showingResult = false
     }
+    screen.textContent += x;
 }
 
-var leftOperand = 0
-var rigthOperand = 0
+function clearScreen(){
+    operatorSelected = false
+    leftOperand = ''
+    rightOperand = ''
+    operator = ''
+    screen.textContent = ''
+}
+
+var leftOperand = ''
+var rightOperand = ''
 var operatorSelected = false 
+var operator = ''
+var showingResult = false
 
 const screen = document.querySelector('#screen');
 const numbers = document.querySelectorAll('.number');
 const clear = document.querySelector('#clear');
 const operators = document.querySelectorAll('.operator');
+const equals = document.querySelector('#equal');
+
+equals.addEventListener('click', function(e){
+    if(rightOperand == ''){
+        rightOperand = leftOperand
+    }
+    var result = operate(operator, parseInt(leftOperand), parseInt(rightOperand));
+    console.log(result);
+    clearScreen()
+    updateScreen(result)
+    showingResult = true
+}) 
 
 numbers.forEach(n => {
     n.addEventListener('click', () => {
+        if(operatorSelected){
+            rightOperand += n.textContent
+        }
         updateScreen(n.textContent)
     })
 });
 
 operators.forEach(n => {
     n.addEventListener('click', () => {
-        if (operatorSelected) {
-            console.log('operator selected')
+        if (operatorSelected || screen.textContent == '') {
             return
         }
         leftOperand = screen.textContent
         operatorSelected = true 
+        operator  = n.id
         updateScreen(n.textContent)
     })
 })
 
 clear.addEventListener('click', e => {
-    updateScreen(clear.id)
+    clearScreen()
 })
-
