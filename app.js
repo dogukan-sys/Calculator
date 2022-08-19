@@ -70,7 +70,7 @@ equals.addEventListener('click', function(e){
     if(rightOperand == ''){
         rightOperand = leftOperand
     }
-    var result = operate(operator, parseInt(leftOperand), parseInt(rightOperand));
+    var result = operate(operator, parseFloat(leftOperand), parseFloat(rightOperand));
     console.log(result);
     clearScreen()
     updateScreen(result)
