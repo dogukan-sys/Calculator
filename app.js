@@ -1,5 +1,5 @@
 function add(a, b) {
-    return a + b;    
+    return a + b;
 }
 
 function subtract(a, b) {
@@ -14,7 +14,7 @@ function divide(a, b) {
     return a / b;
 }
 
-function operate(operator, a, b) { 
+function operate(operator, a, b) {
     switch (operator) {
         case "add":
             result = add(a, b)
@@ -35,18 +35,15 @@ function operate(operator, a, b) {
     return result;
 }
 
-function updateScreen(x){
+function updateScreen(x) {
     // prevent overflow of screen
-    if(screen.textContent.length == 23){
+    if (screen.textContent.length == 23) {
         return
-    } else if(showingResult){
-        screen.textContent = ''
-        showingResult = false
-    }
+    } 
     screen.textContent += x;
 }
 
-function clearScreen(){
+function clearScreen() {
     operatorSelected = false
     leftOperand = ''
     rightOperand = ''
@@ -56,9 +53,9 @@ function clearScreen(){
 
 var leftOperand = ''
 var rightOperand = ''
-var operatorSelected = false 
+var operatorSelected = false
 var operator = ''
-var showingResult = false
+ 
 
 const screen = document.querySelector('#screen');
 const numbers = document.querySelectorAll('.number');
@@ -66,20 +63,20 @@ const clear = document.querySelector('#clear');
 const operators = document.querySelectorAll('.operator');
 const equals = document.querySelector('#equal');
 
-equals.addEventListener('click', function(e){
-    if(rightOperand == ''){
+equals.addEventListener('click', function (e) {
+    if(!operatorSelected) return
+    if (rightOperand == '') {
         rightOperand = leftOperand
     }
     var result = operate(operator, parseFloat(leftOperand), parseFloat(rightOperand));
     console.log(result);
     clearScreen()
     updateScreen(result)
-    showingResult = true
-}) 
+})
 
 numbers.forEach(n => {
     n.addEventListener('click', () => {
-        if(operatorSelected){
+        if (operatorSelected) {
             rightOperand += n.textContent
         }
         updateScreen(n.textContent)
@@ -92,8 +89,8 @@ operators.forEach(n => {
             return
         }
         leftOperand = screen.textContent
-        operatorSelected = true 
-        operator  = n.id
+        operatorSelected = true
+        operator = n.id
         updateScreen(n.textContent)
     })
 })
