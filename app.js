@@ -37,7 +37,7 @@ function operate(operator, a, b) {
 
 function updateScreen(x) {
     // prevent overflow of screen
-    if (screen.textContent.length == 23) {
+    if (screen.textContent.length == 17) {
         return
     } 
     screen.textContent += x;
